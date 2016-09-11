@@ -1,0 +1,4 @@
+# Ignore all the massive data files.
+
+*.data
+
