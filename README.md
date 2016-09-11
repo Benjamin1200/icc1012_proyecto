@@ -1,18 +1,28 @@
 
-Instructions in Ubuntu 16.04
+IMPORTANT RULES:
 
-To run virtual enviroment use.
+* Do not push to origin master, unless is really necessary.
+* Only push to origin master after testing that it works in the branch develop.
+* Every member has it's own branch to work in.
 
-user@user: source bin/activate
+GIT INSTRUCTIONS:
 
-Tu deactivate virtual enviroment use.
+* To checkout of the branch you are use: git checkout <branch_you_want_to_go>
+* To merge a branch to your actual branch use: git merge <branch_that_you_want_to_merge_with_yours>
+* To push a change, first change to the correct branch then use: git push origin <branch_to_push>
 
-user@user: deactivate.
+PROJECT INSTRUCTIONS:
 
-To run Jupyter notebook.
+* Instructions in Ubuntu 16.04
 
-user@user: jupyter notebook
+	To run virtual enviroment use:
+	user@user: source bin/activate
 
-To stop Jupyter notebook.
+	Tu deactivate virtual enviroment use.
+	user@user: deactivate.
 
-Ctrl + C on terminal
+	To run Jupyter notebook.
+	user@user: jupyter notebook
+
+	To stop Jupyter notebook.
+	Ctrl + C on terminal
