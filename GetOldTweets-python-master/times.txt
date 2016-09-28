@@ -9,7 +9,7 @@ Which with the ideal data per week would mean = 48 hours. (max possible 2 per da
 
 Periods: (D = DONE; ND = NOT DONE)
 					AMOUNT
-01-07-2016	08-07-2016	ND	-K
+01-07-2016	08-07-2016	ND	150*4K
 08-07-2016	15-07-2016	ND	-K
 15-07-2016	22-07-2016	ND	-K
 22-07-2016	29-07-2016	ND	-K

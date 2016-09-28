@@ -26,3 +26,7 @@ class TweetCriteria:
 	def setTopTweets(self, topTweets):
 		self.topTweets = topTweets
 		return self
+
+	def skip_tweets(self, skip_tweets):
+		self.skip_tweets = skip_tweets
+		return self

@@ -1,6 +1,7 @@
 import urllib,urllib2,json,re,datetime,sys,cookielib
 from .. import models
 from pyquery import PyQuery
+import time
 
 class TweetManager:
 
@@ -18,63 +19,85 @@ class TweetManager:
         if hasattr(tweetCriteria, 'username') and (tweetCriteria.username.startswith("\'") or tweetCriteria.username.startswith("\"")) and (tweetCriteria.username.endswith("\'") or tweetCriteria.username.endswith("\"")):
             tweetCriteria.username = tweetCriteria.username[1:-1]
 
+        if hasattr(tweetCriteria, 'skip_tweets'):
+            skip_tweets = tweetCriteria.skip_tweets
+
         active = True
+        error_counter = 0
 
         while active:
             json = TweetManager.getJsonReponse(tweetCriteria, refreshCursor, cookieJar)
 
-            if json is None:
-                print "Error happened with retrieval from twitter."
-            else:
-                if len(json['items_html'].strip()) == 0:
-                    break
+            error = False
 
+            if json is None:
+                print "Error happened with retrieval from twitter. Retrying in 1 minute..."
+                error = True
+                time.sleep(60)
+                error_counter += 1
+            
+            if len(json['items_html'].strip()) == 0 and not error:
+                print "Empty response! Retrying in 1 minute..."
+                error = True
+                time.sleep(60)
+                error_counter += 1
+
+            if not error:
                 refreshCursor = json['min_position']
                 tweets = PyQuery(json['items_html'])('div.js-stream-tweet')
-
                 if len(tweets) == 0:
-                    break
+                    print "No new tweets found! Retrying in 1 minute..."
+                    error = True
+                    time.sleep(60)
+                    error_counter += 1
 
+            if error_counter > tweetCriteria.maxTweets:
+                print "There has been a lot of error! ({})".format(error_counter)
+
+            if not error:
                 for tweetHTML in tweets:
-                    tweetPQ = PyQuery(tweetHTML)
-                    tweet = models.Tweet()
+                    if skip_tweets == 0:
+                        tweetPQ = PyQuery(tweetHTML)
+                        tweet = models.Tweet()
 
-                    usernameTweet = tweetPQ("span.username.js-action-profile-name b").text();
-                    txt = re.sub(r"\s+", " ", tweetPQ("p.js-tweet-text").text().replace('# ', '#').replace('@ ', '@'));
-                    retweets = int(tweetPQ("span.ProfileTweet-action--retweet span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""));
-                    favorites = int(tweetPQ("span.ProfileTweet-action--favorite span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""));
-                    dateSec = int(tweetPQ("small.time span.js-short-timestamp").attr("data-time"));
-                    id = tweetPQ.attr("data-tweet-id");
-                    user_id = tweetPQ.attr("data-user-id");
-                    permalink = tweetPQ.attr("data-permalink-path");
+                        usernameTweet = tweetPQ("span.username.js-action-profile-name b").text();
+                        txt = re.sub(r"\s+", " ", tweetPQ("p.js-tweet-text").text().replace('# ', '#').replace('@ ', '@'));
+                        retweets = int(tweetPQ("span.ProfileTweet-action--retweet span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""));
+                        favorites = int(tweetPQ("span.ProfileTweet-action--favorite span.ProfileTweet-actionCount").attr("data-tweet-stat-count").replace(",", ""));
+                        dateSec = int(tweetPQ("small.time span.js-short-timestamp").attr("data-time"));
+                        id = tweetPQ.attr("data-tweet-id");
+                        user_id = tweetPQ.attr("data-user-id");
+                        permalink = tweetPQ.attr("data-permalink-path");
 
-                    geo = ''
-                    geoSpan = tweetPQ('span.Tweet-geo')
-                    if len(geoSpan) > 0:
-                        geo = geoSpan.attr('title')
+                        geo = ''
+                        geoSpan = tweetPQ('span.Tweet-geo')
+                        if len(geoSpan) > 0:
+                            geo = geoSpan.attr('title')
 
-                    tweet.id = id
-                    tweet.permalink = 'https://twitter.com' + permalink
-                    tweet.username = usernameTweet
-                    tweet.user_id = user_id
-                    tweet.text = txt
-                    tweet.date = datetime.datetime.fromtimestamp(dateSec)
-                    tweet.retweets = retweets
-                    tweet.favorites = favorites
-                    tweet.hashtags = " ".join(re.compile('(#\\w*)').findall(tweet.text))
-                    tweet.geo = geo
+                        tweet.id = id
+                        tweet.permalink = 'https://twitter.com' + permalink
+                        tweet.username = usernameTweet
+                        tweet.user_id = user_id
+                        tweet.text = txt
+                        tweet.date = datetime.datetime.fromtimestamp(dateSec)
+                        tweet.retweets = retweets
+                        tweet.favorites = favorites
+                        tweet.hashtags = " ".join(re.compile('(#\\w*)').findall(tweet.text))
+                        tweet.geo = geo
 
-                    results.append(tweet)
-                    resultsAux.append(tweet)
+                        results.append(tweet)
+                        resultsAux.append(tweet)
 
-                    if receiveBuffer and len(resultsAux) >= bufferLength:
-                        receiveBuffer(resultsAux)
-                        resultsAux = []
+                        if receiveBuffer and len(resultsAux) >= bufferLength:
+                            receiveBuffer(resultsAux)
+                            resultsAux = []
 
-                    if tweetCriteria.maxTweets > 0 and len(results) >= tweetCriteria.maxTweets:
-                        active = False
-                        break
+                        if tweetCriteria.maxTweets > 0 and len(results) >= tweetCriteria.maxTweets:
+                            active = False
+                            break
 
+                    else:
+                        skip_tweets -= 1
 
         if receiveBuffer and len(resultsAux) > 0:
             receiveBuffer(resultsAux)

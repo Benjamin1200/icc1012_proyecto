@@ -34,38 +34,27 @@ def main():
 
     date_since = "2016-07-01"
     date_until = "2016-07-08"
-    max_tweets = 10
+    wanted_tweets = 150000
+    skip_tweets = 0
+
+    filename = "old_tweets_short_nintendo_{}.data".format(date_since)
+    with open(filename, 'r') as _file:
+        for line in _file.readlines():
+            skip_tweets += 1
+
+    max_tweets = wanted_tweets - skip_tweets
 
     # Example 2 - Get tweets by query search
-    tweetCriteria = got.manager.TweetCriteria().setQuerySearch('Nintendo').setSince(date_since).setUntil(date_until).setMaxTweets(max_tweets)
+    tweetCriteria = got.manager.TweetCriteria().setQuerySearch('Nintendo').setSince(date_since).setUntil(date_until).setMaxTweets(max_tweets).skip_tweets(skip_tweets)
     tweets = got.manager.TweetManager.getTweets(tweetCriteria)
 
     for tweet in tweets:
-        # printTweet("Nintendo tweet.", tweet)
         tweet_dict = save_tweet_as_dict(tweet)
         #print "DICT:", tweet_dict
 
-        filename = "old_tweets_short.data"
         with open(filename, 'a') as _file:
             # _file.write(tweet)
             _file.write(json.dumps(tweet_dict, sort_keys=True) + "\n")
-
-"""
-    tweetCriteria = got.manager.TweetCriteria().setQuerySearch('PlayStation').setSince(date_since).setUntil(date_until).setMaxTweets(max_tweets)
-    tweet = got.manager.TweetManager.getTweets(tweetCriteria)[0]
-
-    printTweet("PlayStation tweet.", tweet)
-
-    tweetCriteria = got.manager.TweetCriteria().setQuerySearch('Xbox').setSince(date_since).setUntil(date_until).setMaxTweets(max_tweets)
-    tweet = got.manager.TweetManager.getTweets(tweetCriteria)[0]
-
-    printTweet("Xbox tweet.", tweet)
-
-    tweetCriteria = got.manager.TweetCriteria().setQuerySearch('Videogames').setSince(date_since).setUntil(date_until).setMaxTweets(max_tweets)
-    tweet = got.manager.TweetManager.getTweets(tweetCriteria)[0]
-
-    printTweet("Videogames tweet.", tweet)
-"""
 
 if __name__ == '__main__':
     main()
