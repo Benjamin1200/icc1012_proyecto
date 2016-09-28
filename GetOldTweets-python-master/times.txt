@@ -1,0 +1,39 @@
+Have 12 weeks to get data (07-09)
+
+For 50M tweets would mean that 4,16M must be downloaded per week! (is outrageous -> 1,62*4,16 days ~ 6,75 days full time to get 7 days periods)
+
+My ideal would be 200k per week (but prob. will be aprox. 100~150k), which means 2,4M tweets as max from this "script".
+The streaming downloads aprox. half the speed (a bit less, actually is like 1/4) so it would mean that if both run at the same time, and none of the tweets are the same, the max amount obtained would be 3,6M tweets.
+
+Which with the ideal data per week would mean = 48 hours. (max possible 2 per day to obtain)
+
+Periods: (D = DONE; ND = NOT DONE)
+					AMOUNT
+01-07-2016	08-07-2016	ND	-K
+08-07-2016	15-07-2016	ND	-K
+15-07-2016	22-07-2016	ND	-K
+22-07-2016	29-07-2016	ND	-K
+29-07-2016	05-08-2016	ND	-K
+05-08-2016	12-08-2016	ND	-K	*Conference of PS4 (?)
+12-08-2016	19-08-2016	ND	-K
+19-08-2016	26-08-2016	ND	-K
+26-08-2016	02-09-2016	ND	-K
+02-09-2016	09-09-2016	ND	-K
+09-09-2016	16-09-2016	ND	-K
+16-09-2016	23-09-2016	ND	-K
+23-09-2016	XXX
+
+
+For 100 tweets takes 14 secs.
+
+Estimated times for:
+
+1000		= 140 secs.
+10000		= 1400 secs. 	= 23,33 mins.
+*100000		= 14000 secs.	= 233,33 mins.	= 3,88 hours
+1000000		= 140000 secs.	= 2333,33 mins.	= 38,88 hours	= 1,62 days
+10000000	= 1400000 secs.	= 23333,33 mins.= 388,88 hours	= 16,2 days
+
+
+150.000 = 5,83 hours
+200.000 = 7,77 hours
