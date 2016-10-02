@@ -32,15 +32,18 @@ def main():
                     useful_values.update({real_key: attribute[1].strftime("%a %b %e %H:%M:%S +0000 %Y")})
         return useful_values
 
-    date_since = "2016-07-01"
-    date_until = "2016-07-08"
+    date_since = "2016-07-15"
+    date_until = "2016-07-22"
     wanted_tweets = 150000
     skip_tweets = 0
 
     filename = "old_tweets_short_xbox_{}.data".format(date_since)
-    with open(filename, 'r') as _file:
-        for line in _file.readlines():
-            skip_tweets += 1
+    try:
+        with open(filename, 'r') as _file:
+            for line in _file.readlines():
+                skip_tweets += 1
+    except:
+        print "No file found, to see tweets to skip."
 
     max_tweets = wanted_tweets - skip_tweets
 

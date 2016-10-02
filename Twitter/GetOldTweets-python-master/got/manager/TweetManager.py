@@ -36,11 +36,12 @@ class TweetManager:
                 time.sleep(60)
                 error_counter += 1
             
-            if len(json['items_html'].strip()) == 0 and not error:
-                print "Empty response! Retrying in 1 minute..."
-                error = True
-                time.sleep(60)
-                error_counter += 1
+            if not error:
+                if len(json['items_html'].strip()) == 0:
+                    print "Empty response! Retrying in 1 minute..."
+                    error = True
+                    time.sleep(60)
+                    error_counter += 1
 
             if not error:
                 refreshCursor = json['min_position']
@@ -51,8 +52,9 @@ class TweetManager:
                     time.sleep(60)
                     error_counter += 1
 
-            if error_counter > tweetCriteria.maxTweets:
-                print "There has been a lot of error! ({})".format(error_counter)
+            if error_counter > 10:
+                print "There has been a lot of error! ({}) Saving data obtained to file.".format(error_counter)
+                active = False
 
             if not error:
                 for tweetHTML in tweets:
@@ -125,7 +127,11 @@ class TweetManager:
             if tweetCriteria.topTweets:
                 url = "https://twitter.com/i/search/timeline?q=%s&src=typd&max_position=%s"
 
-        url = url % (urllib.quote(urlGetData), refreshCursor)
+        try:
+        	url = url % (urllib.quote(urlGetData), refreshCursor)
+        except:
+        	print "Error with urllib making the url."
+        	return None
 
         headers = [
             ('Host', "twitter.com"),
@@ -137,8 +143,12 @@ class TweetManager:
             ('Connection', "keep-alive")
         ]
 
-        opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookieJar))
-        opener.addheaders = headers
+        try:
+        	opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookieJar))
+        	opener.addheaders = headers
+        except:
+        	print "Error with urllib2 (connection issues probably)."
+        	return None
 
         try:
             response = opener.open(url)
@@ -148,6 +158,10 @@ class TweetManager:
             #sys.exit()
             return None
 
-        dataJson = json.loads(jsonResponse)
+        try:
+        	dataJson = json.loads(jsonResponse)
+        except:
+        	print "Error on trying to parse it as json."
+        	return None
 
         return dataJson

@@ -32,20 +32,23 @@ def main():
                     useful_values.update({real_key: attribute[1].strftime("%a %b %e %H:%M:%S +0000 %Y")})
         return useful_values
 
-    date_since = "2016-07-01"
-    date_until = "2016-07-08"
+    date_since = "2016-07-15"
+    date_until = "2016-07-22"
     wanted_tweets = 150000
     skip_tweets = 0
 
-    filename = "old_tweets_short_videogames_{}.data".format(date_since)
-    with open(filename, 'r') as _file:
-        for line in _file.readlines():
-            skip_tweets += 1
+    filename = "old_tweets_short_playstation_{}.data".format(date_since)
+    try:
+        with open(filename, 'r') as _file:
+            for line in _file.readlines():
+                skip_tweets += 1
+    except:
+        print "No file found, to see tweets to skip."
 
     max_tweets = wanted_tweets - skip_tweets
 
     # Example 2 - Get tweets by query search
-    tweetCriteria = got.manager.TweetCriteria().setQuerySearch('Videogames').setSince(date_since).setUntil(date_until).setMaxTweets(max_tweets).skip_tweets(skip_tweets)
+    tweetCriteria = got.manager.TweetCriteria().setQuerySearch('PlayStation').setSince(date_since).setUntil(date_until).setMaxTweets(max_tweets).skip_tweets(skip_tweets)
     tweets = got.manager.TweetManager.getTweets(tweetCriteria)
 
     for tweet in tweets:
@@ -55,6 +58,7 @@ def main():
         with open(filename, 'a') as _file:
             # _file.write(tweet)
             _file.write(json.dumps(tweet_dict, sort_keys=True) + "\n")
-            
+
+
 if __name__ == '__main__':
     main()
