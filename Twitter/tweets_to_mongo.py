@@ -17,9 +17,8 @@ old_playstation_common_filename = name_directory_old_tweets + "old_tweets_short_
 old_xbox_common_filename = name_directory_old_tweets + "old_tweets_short_xbox_{}.data"
 old_videogames_common_filename = name_directory_old_tweets + "old_tweets_short_videogames_{}.data"
 filename_dates = ["2016-07-01", "2016-07-08", "2016-07-15", "2016-07-22", "2016-07-29", "2016-08-05",
-                  "2016-08-12"]
-""", "2016-08-19", "2016-08-26", "2016-09-02", "2016-09-09", "2016-09-16",
-                  "2016-09-23" """
+                  "2016-08-12", "2016-08-19", "2016-08-26", "2016-09-02", "2016-09-09", "2016-09-16",
+                  "2016-09-23"]
 for i in xrange(0, len(filename_dates)):
     old_nintendo_filenames.append(os.path.join(script_dir, old_nintendo_common_filename.format(filename_dates[i])))
     old_playstation_filenames.append(os.path.join(script_dir, old_playstation_common_filename.format(filename_dates[i])))

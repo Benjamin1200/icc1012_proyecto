@@ -94,12 +94,12 @@ class TweetManager:
                             results.append(tweet)
                             resultsAux.append(tweet)
     
-                                if receiveBuffer and len(resultsAux) >= bufferLength:
-                                    receiveBuffer(resultsAux)
-                                    resultsAux = []
+                            if receiveBuffer and len(resultsAux) >= bufferLength:
+                                receiveBuffer(resultsAux)
+                                resultsAux = []
     
-                                if tweetCriteria.maxTweets > 0 and len(results) >= tweetCriteria.maxTweets:
-                                    active = False
+                            if tweetCriteria.maxTweets > 0 and len(results) >= tweetCriteria.maxTweets:
+                                active = False
                                 break
 
                     else:
