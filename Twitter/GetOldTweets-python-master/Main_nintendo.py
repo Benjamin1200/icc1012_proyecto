@@ -32,8 +32,8 @@ def main():
                     useful_values.update({real_key: attribute[1].strftime("%a %b %e %H:%M:%S +0000 %Y")})
         return useful_values
 
-    date_since = "2016-09-02"
-    date_until = "2016-09-09"
+    date_since = "2016-09-23"
+    date_until = "2016-09-30"
     wanted_tweets = 150000
     skip_tweets = 0
 

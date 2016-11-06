@@ -1,0 +1,17 @@
+project_tweets01.data
+"amount_users"	426450
+
+
+project_tweets02.data
+"amount_users"	574308
+
+
+project_tweets03.data
+"amount_users"	727273
+
+
+project_tweets04.data
+"amount_users"	265827
+
+
+Time taken to completion of the metric: 426.030981 in processor time

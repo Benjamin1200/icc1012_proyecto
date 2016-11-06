@@ -1,0 +1,53 @@
+project_tweets01.data
+"savetimeandmoey"	11391
+"AuctionPorn"	8449
+"AmazonBay4u"	8352
+"retrodeals"	7435
+"Nintendo_Legend"	6895
+"retrodealsUK"	6744
+"LastChanceGamer"	5904
+"GameUP247"	5580
+"RetroNuss"	5441
+"Nintendoe3E3"	5438
+
+
+project_tweets02.data
+"Cammie_Whybrew"	13616
+"AskPlayStation"	13282
+"eBayShopperNews"	11578
+"VideoGamesMall"	10274
+"savetimeandmoey"	8632
+"collinschristof"	5382
+"topnewskoeln"	5297
+"Gamifive"	4829
+"Xbox_360_Gamez"	4080
+"pressebank"	3799
+
+
+project_tweets03.data
+"Xbox_360_Gamez"	34137
+"XboxSupport"	14421
+"VideoGamesMall"	11835
+"Xbox_One_Reddit"	10215
+"xboxgamersdeals"	9224
+"GameUP247"	9156
+"KingsleyNewz"	9139
+"bullzyy"	7576
+"savetimeandmoey"	7176
+"giveawayxfab"	7028
+
+
+project_tweets04.data
+"savetimeandmoey"	15483
+"VideoGames_Up"	13804
+"giveawaygigatop"	8878
+"tw100_1"	6538
+"videogames_pt"	6357
+"videogames_fr"	5993
+"giveawayxfab"	5886
+"DMGG_Videogames"	5295
+"ShoppeWorld"	4824
+"VideoGames_TV"	3709
+
+
+Time taken to completion of the metric: 335.930534 in processor time

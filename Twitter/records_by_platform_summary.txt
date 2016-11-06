@@ -1,0 +1,16 @@
+project_tweets01.data
+1317667 
+
+project_tweets02.data
+2337881 
+
+project_tweets03.data
+2260157 
+
+project_tweets04.data
+735410 
+
+project_tweets.data
+6542718 
+
+Time taken to completion of the metric: 37.615491 in processor time
