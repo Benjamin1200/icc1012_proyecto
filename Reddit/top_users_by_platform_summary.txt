@@ -1,0 +1,14 @@
+out2.json
+"Mariomaster2015"	98
+"AutoModerator"	97
+"Quincea4"	95
+"TSPhoenix"	94
+"mjmannella"	85
+"mikey102880"	84
+"SpahsgonnaSpah"	78
+"Trinitronity"	77
+"thescottishlion"	74
+"Voyager5555"	73
+
+
+Time taken to completion of the metric: 3.496951 in processor time
