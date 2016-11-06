@@ -5,7 +5,8 @@ from nltk.sentiment.util import *
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import json
 import sys
-
+reload(sys)
+sys.setdefaultencoding('utf8')
 n_instances = 100
 subj_docs = [(sent, 'subj') for sent in subjectivity.sents(categories='subj')[:n_instances]]
 obj_docs = [(sent, 'obj') for sent in subjectivity.sents(categories='obj')[:n_instances]]
@@ -29,7 +30,7 @@ sid = SentimentIntensityAnalyzer()
 orig_stdout = sys.stdout
 f = file('out.json', 'w')
 sys.stdout = f
-with open('bd.txt') as json_data:
+with open('bd.json') as json_data:
 	for j in json_data:
 		d = json.loads(j)
 		ss = sid.polarity_scores(d['text'].encode('utf-8'))
@@ -40,6 +41,6 @@ with open('bd.txt') as json_data:
 		else:
 			classificated = "pos"
 		d.update({'classification' :classificated})
-		print d
+		print(json.dumps(d, ensure_ascii=False))
 sys.stdout = orig_stdout
-f.close()
+f.close()			
