@@ -1,8 +1,16 @@
 # Ignore all the massive data files.
 
 *.data
+*.json
+*.out
 
 # Ignore checkpoints of Jupyter.
 
 .ipynb_checkpoints
 
+# Windows Directory
+
+/myenv
+
+# Pycharm
+/.idea
