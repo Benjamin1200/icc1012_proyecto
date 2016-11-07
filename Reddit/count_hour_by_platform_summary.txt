@@ -491,6 +491,3 @@ out2.json
 [44, 7]	303
 [44, 8]	368
 [44, 9]	434
-
-
-Time taken to completion of the metric: 5.650716 in processor time
