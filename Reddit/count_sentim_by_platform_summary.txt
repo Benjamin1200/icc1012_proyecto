@@ -1,0 +1,7 @@
+out2.json
+"neg"	7962
+"neu"	9521
+"pos"	19322
+
+
+Time taken to completion of the metric: 2.513991 in processor time

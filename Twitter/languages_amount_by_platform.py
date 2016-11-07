@@ -12,7 +12,7 @@ if __name__ == '__main__':
     time_start = time.clock()
     # Clean File.
     open("languages_amount_by_platform_summary.txt", 'w').close()
-    files = ["project_tweets01.data", "project_tweets02.data", "project_tweets03.data", "project_tweets04.data"]
+    files = ["project_tweets02.data", "project_tweets03.data", "project_tweets04.data"]
     for _file in files:
         _output_filename = ld.set_language_for_each_tweet(_file)
         # parameters for mrjob.

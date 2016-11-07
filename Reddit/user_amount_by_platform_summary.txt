@@ -1,0 +1,5 @@
+out2.json
+"amount_users"	14300
+
+
+Time taken to completion of the metric: 4.039858 in processor time
