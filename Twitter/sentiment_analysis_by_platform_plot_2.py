@@ -1,6 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
+
 archivo = open("sentiment_analysis_by_platform_summary.txt")
+
+########################################
+###############Nintendo#################
+########################################
+
 archivo.readline()
 archivo.readline()
 pos = []
