@@ -114,7 +114,7 @@ for i in sorted(pos):
 	x_pos_name.append(str(i[0])+ " " + str(i[1]))
 	y_pos.append(i[2])
 	count += 1
-
+ax = plt.subplot(111)
 plt.xticks(x_pos, x_pos_name)
 pos_plt = plt.plot(x_pos, y_pos, 'g', label='positive')
 plt.legend(loc=2)
