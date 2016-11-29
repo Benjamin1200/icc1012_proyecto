@@ -20,7 +20,7 @@ with open(_output, 'r') as fo:
             if values['language'] != values['real_language']:
                 count_errors += 1
             count_tweets += 1
-print "The percentage of correct predictions is: {}%".format(float(count_tweets - count_errors) / count_tweets * 100)
+print "The percentage of correct predictions for languages is: {}%".format(float(count_tweets - count_errors) / count_tweets * 100)
 
 # Check correct predictions of: sentiment
 count_errors = 0
@@ -32,4 +32,4 @@ with open(_output2, 'r') as fo:
             if values['classification'] != values['real_classification']:
                 count_errors += 1
             count_tweets += 1
-print "The percentage of correct predictions is: {}%".format(float(count_tweets - count_errors) / count_tweets * 100)
+print "The percentage of correct predictions for sentiments is: {}%".format(float(count_tweets - count_errors) / count_tweets * 100)
