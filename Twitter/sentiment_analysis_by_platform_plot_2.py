@@ -26,6 +26,7 @@ while True:
 	else:
 		neu.append([int(line[0]), int(line[1]), int(line[3])])
 neg.pop()
+neu.pop()
 n= len(neg)
 neg = sorted(neg)
 neu = sorted(neu)
