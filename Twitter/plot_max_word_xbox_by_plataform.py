@@ -117,6 +117,20 @@ for i in fechas:
 		other_plt.append(other_count[i])
 	except:
 		other_plt.append(0)
+
+width = 1
+ind=np.arange(len(fechas))
+ax = plt.subplot(111)
+plt.xticks(ind, fechas)
+xbx_plt = plt.plot(ind, xbox_plt,color="green", label='xbox')
+box = ax.get_position()
+ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
+ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+plt.title("Word: Xbox")
+plt.xlabel('Week & Hour')
+plt.ylabel('Count')
+plt.show()
+
 width = 1
 ind=np.arange(len(fechas))
 ax = plt.subplot(111)
